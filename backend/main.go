@@ -1,17 +1,21 @@
 package main
 
 import (
-	"backend/api"
+	"backend/api" // 替換 "your_project_name" 為你的專案名
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
+	// 初始化資料庫連接
+	api.InitDB()
 
-	// 设置用户相关的路由
-	r.POST("/api/user/register", api.UserRegister)
-	r.POST("/api/user/login", api.UserLogin)
-	// 启动服务器
-	r.Run(":8080")
+	// 創建Gin引擎
+	router := gin.Default()
+
+	// 定義路由
+	router.POST("/api/user/login", api.UserLogin)
+
+	// 啟動服務
+	router.Run(":8080")
 }
