@@ -14,7 +14,8 @@ func main() {
 	router := gin.Default()
 
 	// 定義路由
-	router.POST("/api/user/login", api.UserLogin)
+	router.GET("/api/user/login", api.UserLogin)
+	router.POST("/api/user/register", api.UserRegister)
 
 	// 啟動服務
 	router.Run(":8080")
