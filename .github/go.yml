@@ -17,7 +17,7 @@ jobs:
       - name: 設定 Go
         uses: actions/setup-go@v2
         with:
-          go-version: "^1.21.7"
+          go-version: "1.18" # 更新为正确的 Go 版本号
         working-directory: backend
 
       - name: 獲取依賴
