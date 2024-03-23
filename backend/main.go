@@ -16,6 +16,7 @@ func main() {
 	// 定義路由
 	router.GET("/api/user/login", api.UserLogin)
 	router.POST("/api/user/register", api.UserRegister)
+	router.PUT("/api/user/:userId", api.UserUpdate)
 
 	// 啟動服務
 	router.Run(":8080")
