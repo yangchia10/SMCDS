@@ -1,7 +1,7 @@
 package api_test
 
 import (
-	"backend/api" // 替換為你的項目的實際路徑
+	"backend/api" // 替換為你的專案的實際路徑
 	"bytes"
 	"encoding/json"
 	"net/http"
@@ -58,13 +58,23 @@ func TestUserLogin(t *testing.T) {
 	// 校驗響應狀態碼
 	assert.Equal(t, http.StatusOK, w.Code)
 
+	// 打印響應體
+	respBody := w.Body.String()
+	t.Logf("響應體: %s", respBody)
+
 	// 校驗響應數據
 	var response map[string]interface{}
 	err = json.Unmarshal(w.Body.Bytes(), &response)
 	if err != nil {
 		t.Errorf("解析響應體時發生錯誤: %s", err)
+	} else {
+		// 打印出 API 響應中的用戶資訊
+		t.Logf("用戶 ID: %v", response["id"])
+		t.Logf("用戶名: %s", response["username"])
+		t.Logf("用戶角色: %s", response["role"])
 	}
 
-	// 這里我們只檢查用戶名，因為角色是在模擬的 SQL 查詢結果中定義的
+	// 這裡我們檢查用戶名和角色是否如預期返回
 	assert.Equal(t, loginData["username"], response["username"])
+	assert.Equal(t, "user_role", response["role"]) // 確保這個值與你的 mock 數據匹配
 }
