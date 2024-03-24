@@ -17,7 +17,8 @@ func main() {
 	router.GET("/api/user/login", api.UserLogin)
 	router.POST("/api/user/register", api.UserRegister)
 	router.PUT("/api/user/:userId", api.UserUpdate)
+	router.GET("/api/user/health", api.HealthCheck)
 
 	// 啟動服務
-	router.Run(":8080")
+	router.Run(":1010")
 }
